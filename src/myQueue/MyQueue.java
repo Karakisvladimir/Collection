@@ -1,67 +1,46 @@
 package myQueue;
 
-public class MyQueue {
-    Node front, rear;
-    int size;
+public class MyQueue<T> {
+    private Node<T> head;
+    private int size;
 
-
-    public MyQueue() {
-        front = null;
-        rear = null;
-        size = 0;
-    }
-
-    public void add(Object data) {
-        // Create a new node
-        Node temp = new Node(data);
-        // Checks if queue is empty.
-        if (front == null) {
-            front = temp;
-            rear = temp;
+    public void add(T item) {
+        Node<T> node = new Node<>();
+        node.setValue(item);
+        if (head == null) {
+            head = node;
         } else {
-            // Add the new node at the end of the queue.
-            rear.next = temp;
-            rear = rear.next;
+            Node<T> last = head;
+            while (last.getNext() != null) {
+                last = last.getNext();
+            }
+            last.setNext(node);
         }
-
         size++;
     }
 
-    public Object poll() {
-        if (size == 0) {
-            return null;
-        }
-
-        Object data = front.data;
-        // Move the front node
-        front = front.next;
-        // Decrease size by one
-        size -= 1;
-        return data;
-    }
-
-    public Object peek() {
-        if (size == 0) {
-            return null;
-        }
-        return front.data;
-    }
-
-    public int size() {
+    public  int size() {
         return size;
     }
 
-    public void clear() {
-        front = null;
-        rear = null;
-        size = 0;
+
+    public T peek(){
+        return head.getValue();
+    }
+    public T poll(){
+        T value = head.getValue();
+        head = head.getNext();
+        size--;
+        return value;
     }
 
 
+
+    public void clear() {
+        head = null;
+        size = 0;
+    }
 }
-
-
-
 
 
 

@@ -1,13 +1,16 @@
 package myHashMap;
 
-public class Node {
-    Object key;
-    Object value;
-    Node next;
 
-    Node(Object key, Object value) {
+
+
+class Node< K , V>{
+    public K key;
+    public V value;
+    public Node next;
+
+    public Node(K key, V value) {
         this.key = key;
         this.value = value;
-        this.next = null;
+
     }
 }
