@@ -1,9 +1,7 @@
 package myStack;
 
-public class MyStack {
-    // посилання на перший елемент стеку
+public class MyStack<T> {
     private Node top;
-    // розмір стеку
     private int size;
 
     // створює порожній стек
@@ -12,33 +10,26 @@ public class MyStack {
         size = 0;
     }
 
-    // перевірка чи стек порожній
     public boolean isEmpty() {
         return top == null;
     }
 
-    // повернути розмір стеку
     public int size() {
         return size;
     }
 
-    // додає елемент в стек
-    public void push(Object data) {
-        Node newNode = new Node(data);
-
-        // якщо стек порожній то вказівник top буде вказувати на наш елемент
+    public T push(T data) {
+        Node<T> newNode = new Node<T>(data);
         if (isEmpty())
             top = newNode;
-            // інакше вказівник top буде вказувати на наш елемент, і його next буде вказувати на старий елемент
         else {
             newNode.next = top;
             top = newNode;
         }
-        // збільшуємо розмір колекції
         size++;
+        return data;
     }
 
-    // повертає перший елемент стеку
     public Object peek() {
         if (isEmpty())
             throw new RuntimeException("Stack Underflow");
@@ -53,13 +44,8 @@ public class MyStack {
         return element;
     }
 
-    // видаляє елемент за індексом
     public void remove(int index) {
-        // перевіряємо чи елемент існує
-        if (index < 0 || index > size)
-            throw new IndexOutOfBoundsException("Index out of bounds");
-
-        // перевіряємо чи наш елемент є першим
+        IndexCheckUtil.checkIndex(index, size);
         if (index == 0) {
             pop();
             return;
@@ -74,7 +60,6 @@ public class MyStack {
         size--;
     }
 
-    // очищає колекцію
     public void clear() {
         top = null;
         size = 0;
@@ -89,3 +74,4 @@ public class MyStack {
 //    size() повертає розмір колекції
 //    peek() повертає перший елемент стеку
 //    pop() повертає перший елемент стеку та видаляє його з колекції
+

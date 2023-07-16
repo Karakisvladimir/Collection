@@ -1,12 +1,11 @@
 package myStack;
 
-public class Node {
-    public Object data;
+public class Node<T> {
+    public T data;
     // посилання на наступний елемент стеку
-    public Node next;
+    public Node<T> next;
 
-    public Node(Object data) {
+    public Node(T data) {
         this.data = data;
     }
 }
-

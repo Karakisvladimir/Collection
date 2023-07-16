@@ -1,79 +1,119 @@
 package myHashMap;
 
-public class MyHashMap {
-    private Node head;
 
-    public void put(Object key, Object value) {
+public class MyHashMap<K, V> {
+
+    private Node head;
+    private int size;
+
+    public MyHashMap() {
+
+    }
+
+
+    public void put(K key, V value) {
+
+        Node node = new Node(key, value);
+        boolean isExisted = false;
+
         if (head == null) {
-            head = new Node(key, value);
-        } else {
-            Node current = head;
-            while (current.next != null && current.key != key) {
-                current = current.next;
+            head = node;
+            size++;
+            return;
+        }
+
+        Node temp = head;
+        while (temp != null) {
+            if (temp.key.equals(key)) {
+                temp.value = value;
+                isExisted = true;
+                break;
             }
-            if (current.key == key) {
-                current.value = value;
-            } else {
-                current.next = new Node(key, value);
-            }
+            temp = temp.next;
+        }
+
+        if (!isExisted) {
+            node.next = head;
+            head = node;
+            size++;
         }
     }
 
-    public void remove(Object key) {
-        if (head != null) {
-            if (head.key == key) {
-                head = head.next;
-            } else {
-                Node current = head;
-                boolean isRemoved = false;
-                while (current.next != null && !isRemoved) {
-                    if (current.next.key == key) {
-                        current.next = current.next.next;
-                        isRemoved = true;
-                    } else {
-                        current = current.next;
-                    }
+    public K remove(K key) {
+        K result = null;
+        if (head == null)
+            return result;
+
+        if (head.key.equals(key)) {
+            result = (K) head.value;
+            head = head.next;
+            size--;
+        } else {
+            Node preNode = head;
+            Node temp = preNode.next;
+            while (temp != null) {
+                if (temp.key.equals(key)) {
+                    preNode.next = temp.next;
+                    result = (K) temp.value;
+                    size--;
+                    break;
                 }
+                preNode = preNode.next;
+                temp = temp.next;
             }
         }
+
+        return result;
     }
 
     public void clear() {
+        size = 0;
         head = null;
     }
 
     public int size() {
-        if (head == null) {
-            return 0;
-        }
-        int size = 1;
-        Node current = head;
-        while (current.next != null) {
-            size++;
-            current = current.next;
-        }
         return size;
     }
 
-    public Object get(Object key) {
-        Node current = head;
-        while (current != null) {
-            if (current.key == key) {
-                return current.value;
+    public V get(K key) {
+
+        if (head == null) return null;
+
+        Node temp = head;
+        while (temp != null) {
+            if (temp.key.equals(key)) {
+                return (V) temp.value;
             }
-            current = current.next;
+            temp = temp.next;
         }
+
         return null;
     }
 
+    public boolean containsKey(K key) {
+
+        Node temp = head;
+        while (temp != null) {
+            if (temp.key.equals(key)) {
+                return true;
+            }
+            temp = temp.next;
+        }
+
+        return false;
+    }
+
+    public boolean containsValue(V value) {
+
+        Node temp = head;
+        while (temp != null) {
+            if (temp.value.equals(value)) {
+                return true;
+            }
+            temp = temp.next;
+        }
+
+        return false;
+    }
 
 }
-
-
-//    Методи
-//    put(Object key, Object value) додає пару ключ + значення
-//    remove(Object key) видаляє пару за ключем
-//    clear() очищає колекцію
-//    size() повертає розмір колекції
-//    get(Object key) повертає значення (Object value) за ключем
-

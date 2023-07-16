@@ -1,10 +1,13 @@
 package myStack;
 
-
-public class TestMyStack {
+public class TestMyStack1 {
     public static void main(String[] args) {
-
-        MyStack stack = new MyStack();
+        MyStack<String> stack = new MyStack<>();
+        for (int i = 0; i < 1000000; i++) {
+            stack.push(String.valueOf(i));
+            i++;
+        }
+        stack.push("Mersedes");
         stack.push("Mazda");
         stack.push("Toyota");
         stack.push("BMW");
