@@ -5,7 +5,6 @@ public class TestMyStack1 {
         MyStack<String> stack = new MyStack<>();
         for (int i = 0; i < 1000000; i++) {
             stack.push(String.valueOf(i));
-            i++;
         }
         stack.push("Mersedes");
         stack.push("Mazda");

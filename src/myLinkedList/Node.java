@@ -4,6 +4,11 @@ public class Node<T> {
     private T value;
     private Node<T> next;
 
+    public Node(T item,Node<T> next) {
+        this.next =next;
+        value =item;
+    }
+
     public T getValue() {
         return value;
     }

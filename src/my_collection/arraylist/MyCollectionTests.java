@@ -5,7 +5,6 @@ public class MyCollectionTests {
         MyArrayList<Number> list = new MyArrayList();
         for (int i = 0; i < 1000000; i++) {
             list.add(i);
-            i++;
         }
         System.out.println("list = " + list);
         System.out.println("list.size() = " + list.size());
