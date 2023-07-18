@@ -6,7 +6,6 @@ public class TestMyQueue {
         queue.add("Mazda3");
         for (int i = 0; i < 100000; i++) {
             queue.add(String.valueOf(i));
-            i++;
         }
         System.out.println("first queue it " + queue.peek());
         System.out.println("queue.size() = " + queue.size());

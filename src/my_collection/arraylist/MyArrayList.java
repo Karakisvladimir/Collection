@@ -23,7 +23,7 @@ public class MyArrayList<T> {
         index++;
     }
 
-    public void remove(int numberIndex) {
+    public   void  remove(int numberIndex) {
         if (data.length < numberIndex || index < numberIndex) {
             throw new IndexOutOfBoundsException(index + " No Index");
         }

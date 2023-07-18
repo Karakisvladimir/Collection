@@ -5,8 +5,7 @@ public class MyLinkedList<T> {
     private int size;
 
     public void add(T item) {
-        Node<T> node = new Node<>();
-        node.setValue(item);
+        Node<T> node = new Node<>(item, null);
         if (head == null) {
             head = node;
         } else {
