@@ -1,20 +1,23 @@
 package myQueue;
 
+import myLinkedList.Node;
+
 public class MyQueue<T> {
     private Node<T> head;
+    private Node<T> tail;
     private int size;
 
+
     public void add(T item) {
-        Node<T> node = new Node<>();
-        node.setValue(item);
-        if (head == null) {
-            head = node;
+        Node<T> newNode = new Node<>(item, null);
+        if (size == 0) {
+            tail = head = newNode;
+        } else if (size == 1) {
+            tail = newNode;
+            head.setNext(tail);
         } else {
-            Node<T> last = head;
-            while (last.getNext() != null) {
-                last = last.getNext();
-            }
-            last.setNext(node);
+            tail.setNext(newNode);
+            tail = newNode;
         }
         size++;
     }

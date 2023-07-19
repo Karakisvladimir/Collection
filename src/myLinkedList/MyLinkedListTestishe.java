@@ -3,8 +3,8 @@ package myLinkedList;
 public class MyLinkedListTestishe {
     public static void main(String[] args) {
         MyLinkedList<String> list = new MyLinkedList<>();
-        for (int i = 0; i < 10000; i++) {
-            list.add("i"+ i);
+        for (int i = 0; i < 1000000; i++) {
+            list.add("i" + i);
         }
         System.out.println("list.size() = " + list.size());
         System.out.println("list.get(0) = " + list.get(0));
