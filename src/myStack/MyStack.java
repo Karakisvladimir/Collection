@@ -30,18 +30,18 @@ public class MyStack<T> {
         return data;
     }
 
-    public Object peek() {
+    public T peek() {
         if (isEmpty())
             throw new RuntimeException("Stack Underflow");
-        return top.data;
+        return (T) top.data;
     }
 
     // повертає перший елемент стеку та видаляє його
-    public Object pop() {
+    public T pop() {
         Object element = peek();
         top = top.next;
         size--;
-        return element;
+        return (T) element;
     }
 
     public void remove(int index) {

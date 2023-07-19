@@ -105,13 +105,13 @@ public class MyHashMap<K, V> {
             if (tmpNode != null) {
                 Node<K, V> current = tmpNode;
                 while (current.next != null) {
-                    putValue(tmpNode.key, tmpNode.value);
+                    putValue(current.key, current.value);
                     current = current.next;
                 }
+                putValue(current.key, current.value);
             }
         }
     }
-
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
